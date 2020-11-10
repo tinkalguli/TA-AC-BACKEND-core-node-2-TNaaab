@@ -14,7 +14,13 @@ You are currently in server.js
 
 Write code to
   - get relative path of `index.js` 
+  ```js
+  console.log("../client/index.js");
+  ```
   - get absolute path of `index.js`
+  ```js
+  console.log(__filename);
+  ```
 
 #### server
 Create a basic http server which should grab data from a HTML form rendered on a specific route and display the content on a seperate page.

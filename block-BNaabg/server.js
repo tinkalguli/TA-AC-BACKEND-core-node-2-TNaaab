@@ -49,19 +49,14 @@ server.on("request", (req, res) => {
 
         // Update file
         if (req.method === "PUT" && parsedUrl.pathname === "/users") {
-            console.log("aya");
             fs.open(userDir + queryUser + ".json", "r+", (err, fileNum) => {
                 if (err) res.end(JSON.stringify(err));
-                console.log("open");
                 fs.ftruncate(fileNum, (err) => {
                     if (err) res.end(JSON.stringify(err));
-                    console.log("ftruncate");
                     fs.writeFile(fileNum, store, (err) => {
                         if (err) res.end(json.stringify(err));
-                        console.log("writeFile");
                         fs.close(fileNum, (err) => {
                             if (err) res.end(json.stringify(err));
-                            console.log("close");
                             res.end(`${queryUser} successfully updated`);
                         });
                     });

@@ -51,7 +51,7 @@ server.on("request", (req, res) => {
         if (req.method === "PUT" && parsedUrl.pathname === "/users") {
             fs.open(userDir + queryUser + ".json", "r+", (err, fileNum) => {
                 if (err) res.end(JSON.stringify(err));
-                fs.readFile(fileNum, (err) => {
+                fs.ftruncate(fileNum, (err) => {
                     if (err) res.end(JSON.stringify(err));
                     fs.writeFile(fileNum, store, (err) => {
                         if (err) res.end(json.stringify(err));
@@ -63,6 +63,9 @@ server.on("request", (req, res) => {
                 });
             });
         }
+
+
+        res.end(`404 Page not found`);
     });
 });
 
